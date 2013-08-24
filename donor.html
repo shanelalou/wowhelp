@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+
+<link rel="stylesheet" href="css/design.css" />
+<link rel="stylesheet" href="themes/A-F.min.css" />
+<link rel="stylesheet" href="css/1.css" />
+	
+<script src="js/2.js"></script>
+<script src="js/3.js"></script>
+		<script>
+		var db=openDatabase('donor3','1.0','testing database',2*1024*1024);
+function createDb(){
+db.transaction(function(tx){
+tx.executeSql('create table IF NOT EXISTS tblTesting2 (id, fldlname, fldfname, fldmail, fldpass)');
+console.log("magaling");
+});
+}
+
+function addData(){
+
+var txtid = document.getElementById('txtid').value;
+var txtlname = document.getElementById('txtlname').value;
+var txtfname = document.getElementById('txtfname').value;
+var txtemail = document.getElementById('txtemail').value;
+var txtpass = document.getElementById('txtpass').value;
+
+db.transaction(function(tx){
+tx.executeSql('insert into tblTesting2 values(?,?,?,?,?)', [txtid,txtlname,txtfname,txtemail,txtpass]);
+console.log("ikaw na");
+window.location = '#first'
+});
+}
+
+
+function displayData(){
+db.transaction(function(tx){
+tx.executeSql('select * from tblTesting',[], function (tx, result) {
+var len=result.rows.length, i;
+for (i = 0; i < len; i++) {
+var table=document.getElementById('mytable');
+var row=table.insertRow(0);
+var cell1=row.insertCell(0);
+var cell2=row.insertCell(1);
+var cell3=row.insertCell(2);
+var cell3=row.insertCell(3);
+cell1.innerHTML=(result.rows.item(i).fldlname);
+cell2.innerHTML=(result.rows.item(i).fldfname);
+cell3.innerHTML=(result.rows.item(i).fldemail);
+cell3.innerHTML=(result.rows.item(i).fldpass);
+console.log("LIST");
+}
+});
+});
+}
+</script>
+</head>
+<body  onload="createDb()">
+
+
+<!--Front Page-->
+<div data-role="page" data-theme="c" id="first" class="content">
+ <div data-role="header" data-theme="f" div style="min-height: 50px;" align="center" data-position="fixed" data-position="fixed">
+ <h1><font size="8" face="Century Gothic">WELCOME</font></h1>
+
+</div>
+
+<div data-role="content" align="center" data-theme="e">
+</br></br>
+	<img src="images/wow.gif" height="680" width="720" id="pics">
+	</br></br></br></br></br></br>
+	
+	<a href="#main" data-role="button" data-theme="c" class="my-button" style="font-size:60px;" data-transition="flow" id="content"><font size="6px">Enter as Guest</font></a>
+	<a href="#register" data-role="button" data-theme="c" class="my-button" style="font-size:60px;" data-transition="fade" id="content"><font size="6px">Register</font></a>
+	<a href="#about" data-role="button" data-theme="c" class="my-button" style="font-size:60px;" data-transition="fade" id="content"><font size="6px">About</font></a>
+</div>
+	 
+	<div data-role="footer" data-position="fixed" data-theme="f">
+	<h1>Alrights Reserved 2013</h1>
+</div>
+    </div>
+
+
+	
+	
+	<!--Register Page-->
+<div data-role="page" data-theme="c" id="register" class="content">
+ <div data-role="header" data-theme="f" div style="min-height: 50px;" align="center" data-position="fixed" data-position="fixed">
+   <a href="#first" data-role="button" data-icon="arrow-l" data-iconpos="left" data-inline="true">Home</a>
+ <h1><font size="8" face="Century Gothic">WELCOME</font></h1>
+
+</div>
+
+<div data-role="content" align="center" data-theme="e">
+REGISTER AS DONOR
+
+
+<table>
+<tr>
+<td>PASSWORD ID</td>
+<td><input type="text" id="txtid"></td>
+</tr>
+
+<tr>
+<td>LAST NAME </td>
+<td><input type="text" id="txtlname" required></td>
+</tr>
+<tr>
+<td>FIRST NAME </td>
+<td><input type="text" id="txtfname" required></td>
+</tr>
+<tr>
+<td>EMAIL </td>
+<td><input type="text" id="txtemail" required></td>
+</tr>
+
+<tr>
+<td>PASSWORD </td>
+<td><input type="password" id="txtpass"></td>
+</tr>
+
+<tr>
+<td></td>
+<td><button onclick="addData()"> REGISTER </button></td>
+</tr>
+
+</table>
+<button onclick="addData()"> ADD DATA </button>
+<button onclick="displayData()"> DISPLAY DATA </button>
+<table border=1 id="mytable"></table>
+</div>
+	 
+	<div data-role="footer" data-position="fixed" data-theme="f">
+	<h1>Alrights Reserved 2013</h1>
+</div>
+    </div>
+
+	<!--Register Page-->
+<div data-role="page" data-theme="c" id="register2" class="content">
+ <div data-role="header" data-theme="f" div style="min-height: 50px;" align="center" data-position="fixed" data-position="fixed">
+   <a href="#first" data-role="button" data-icon="arrow-l" data-iconpos="left" data-inline="true">Home</a>
+ <h1><font size="8" face="Century Gothic">WELCOME</font></h1>
+
+</div>
+
+<div data-role="content" align="center" data-theme="e">
+REGISTER AN OFW
+
+
+<table>
+<tr>
+<td>PASSPORT ID:</td>
+<td><input type="text" id="txtid"></td>
+</tr>
+
+<tr>
+<td>LAST NAME: </td>
+<td><input type="text" id="txtlname1" required></td>
+</tr>
+<tr>
+<td>FIRST NAME </td>
+<td><input type="text" id="txtfname1" required></td>
+</tr>
+<tr>
+<td>LOCATION </td>
+<td><input type="text" id="txtlocation" required></td>
+</tr>
+
+<tr>
+<td>REASON</td>
+<td><input type="text" id="txtreason"></td>
+</tr>
+
+<tr>
+<td></td>
+<td><button onclick="addData1()"> REGISTER </button></td>
+</tr>
+
+</table>
+<button onclick="addData()"> ADD DATA </button>
+<button onclick="displayData()"> DISPLAY DATA </button>
+<table border=1 id="mytable"></table>
+</div>
+	 
+	<div data-role="footer" data-position="fixed" data-theme="f">
+	<h1>Alrights Reserved 2013</h1>
+</div>
+    </div>
+
+<!--Main Page-->
+
+<div data-role="page" data-theme="e" id="main">
+ <div data-role="header" data-theme="f" div style="min-height: 90px;" align="center" data-position="fixed" data-position="fixed">
+  <a href="#first" data-role="button" data-icon="arrow-l" data-iconpos="left" data-inline="true" data-transition="flow"><font size="5">Home</font></a>
+<h1><font size="8" face="Century Gothic">WOW SPACE</font></h1>
+</div>
+  <div data-role="content" align="center">
+  
+ <!--
+    <a href="#panel1" data-role="button" data-theme="c" class="my-button99"><font size="5px"></br><img src="images/gear.png" width="60" height="60"></br>Legal </br> Services</font></a>
+	 <a href="#panel2" data-role="button" data-theme="c" class="my-button99"><font size="5px"></br><img src="images/vending.png" width="60" height="60"></br>Online Vending</font></a>
+	  <a href="#panel3" data-role="button" data-theme="c" class="my-button99"><font size="5px"></br><img src="images/media.png" width="80" height="80"></br>Social Media</font></a>
+	   <a href="#panel1" data-role="button" data-theme="c" class="my-button99"><font size="5px"></br><img src="images/hub.png" width="140" height="80"></br>Family Hub</font></a>
+	   <a href="#panel1" data-role="button" data-theme="c" class="my-button99"><font size="5px"></br><img src="images/gps.png" width="150" height="100"></br>Family Finder</font></a>
+-->
+</br></br>
+
+<table>
+<tr> 
+<td>
+<a href="#panel1"> <img src="images/vending.png" width="320" height="320"> </a>
+</td>
+<td>
+</td>
+<td>
+<img src="images/legal.png" width="320" height="320">
+</td>
+</tr>
+<tr> 
+<td>
+<a href="#panel1"> <img src="images/vending.png" width="320" height="320"> </a>
+</td>
+<td>
+</td>
+<td>
+<img src="images/legal.png" width="320" height="320">
+</td>
+</tr> 
+<tr> 
+<td>
+<a href="#panel1"> <img src="images/vending.png" width="320" height="320"> </a>
+</td>
+<td>
+</td>
+<td>
+<img src="images/legal.png" width="320" height="320">
+</td>
+</tr> 
+</table>
+<center>
+
+
+ 
+  
+  
+  </div>
+ 
+  <!-- defaultpanel My College -->
+    <div data-role="panel" id="panel1" data-theme="f">
+ 
+      <div class="panel-content">
+	  </br></br>
+	 <center><img src="images/1.png" height="140" width="180"></center>
+        <h1 align="center"><font size="5px" face="Century Gothic">Legal Services</font></h1>
+         <a href="#vmg" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">SSS</font></a></br></br>
+		  <a href="#courses" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">Phil-health</font></a></br></br>
+		   <a href="#admission" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">Pag-ibig</font></a></br></br>
+		    <a href="#admission" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">OWWA</font></a></br></br>
+		
+        <a href="#demo-links" data-rel="close" data-role="button" data-theme="f" data-icon="delete" align="center"><font size="5px" face="Century Gothic">Close panel</a></font>
+      </div><!-- /content wrapper for padding -->
+ 
+    </div><!-- /defaultpanel -->
+	
+	<!-- defaultpanel My College -->
+    <div data-role="panel" id="panel2" data-theme="f">
+ 
+      <div class="panel-content">
+	  </br></br>
+	 <center><img src="images/1.png" height="140" width="180"></center>
+        <h1 align="center"><font size="5px" face="Century Gothic">Legal Services</font></h1>
+         <a href="#sulit" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">Sulit.com.ph</font></a></br></br>
+		  <a href="#courses" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">LAZADA</font></a></br></br>
+		   <a href="#admission" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">iGrab</font></a></br></br>
+		    <a href="#admission" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">Halo Halo Mall</font></a></br></br>
+			  <a href="#admission" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">ZALORA</font></a></br></br>
+			    <a href="#admission" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">Ayosdito.com</font></a></br></br>
+				  <a href="#admission" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">eBay</font></a></br></br>
+		
+        <a href="#demo-links" data-rel="close" data-role="button" data-theme="f" data-icon="delete" align="center"><font size="5px" face="Century Gothic">Close panel</a></font>
+      </div><!-- /content wrapper for padding -->
+ 
+    </div><!-- /defaultpanel -->
+	
+	<!-- defaultpanel My College -->
+    <div data-role="panel" id="panel3" data-theme="f">
+ 
+      <div class="panel-content">
+	  </br></br>
+	 <center><img src="images/1.png" height="140" width="180"></center>
+        <h1 align="center"><font size="5px" face="Century Gothic">Legal Services</font></h1>
+         <a href="#local" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">ABS-CBN Twitter</font></a></br></br>
+		  <a href="#world" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">CNN Twitter</font></a></br></br>
+		   <a href="#streaming" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">PinoyTv.com</font></a></br></br>
+		    <a href="#admission" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">Pinoy Humor</font></a></br></br>
+			  <a href="#admission" data-role="button" data-theme="e" data-transition="flow"><font size="5px" face="Century Gothic">Pinoy Recipe</font></a></br></br>
+			   
+        <a href="#demo-links" data-rel="close" data-role="button" data-theme="f" data-icon="delete" align="center"><font size="5px" face="Century Gothic">Close panel</a></font>
+      </div><!-- /content wrapper for padding -->
+ 
+    </div><!-- /defaultpanel -->
+	
+	
+	 <div data-role="footer" data-position="fixed" data-theme="f">
+	<h1>Alrights Reserved 2013</h1>
+</div>
+	
+</div>
+
+  <!-- panel end -->
+  
+ 
+ <!--local news Page-->
+
+<div data-role="page" data-theme="c" id="local" class="content">
+ <div data-role="header" data-theme="f" div style="min-height: 50px;" align="center" data-position="fixed" data-position="fixed">
+ <h1><font size="8" face="Century Gothic">WOW SPACE</font></h1>
+</div>
+<div data-role="content" align="center" data-theme="e">
+
+<a class="twitter-timeline" href="https://twitter.com/ABSCBNNews" data-chrome="nofooter noborders transparent" data-widget-id="370963514422083584" width="700" height="1100" >Tweets by @ABSCBNNews</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+	</div>
+	 <div data-role="footer" data-position="fixed" data-theme="f">
+	<h1>Alrights Reserved 2013</h1>
+</div>
+	
+</div>
+  <!-- local end -->
+    
+ <!--world news Page-->
+
+<div data-role="page" data-theme="c" id="world" class="content">
+ <div data-role="header" data-theme="f" div style="min-height: 50px;" align="center" data-position="fixed" data-position="fixed">
+ <h1><font size="8" face="Century Gothic">WOW SPACE</font></h1>
+</div>
+<div data-role="content" align="center" data-theme="e">
+
+<a class="twitter-timeline" href="https://twitter.com/CNN" data-chrome="nofooter noborders transparent" data-widget-id="370963514422083584">Tweets by @CNN</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+	</div>
+	 <div data-role="footer" data-position="fixed" data-theme="f">
+	<h1>Alrights Reserved 2013</h1>
+</div>
+	
+</div>
+  <!-- local end -->
+    
+
+ <!--sulit.com Page-->
+
+<div data-role="page" data-theme="c" id="sulit" class="content">
+ <div data-role="header" data-theme="f" div style="min-height: 50px;" align="center" data-position="fixed" data-position="fixed">
+ <h1><font size="8" face="Century Gothic">WOW SPACE</font></h1>
+</div>
+<div data-role="content" align="center" data-theme="e">
+
+<iframe src="www.sulit.com.ph" width="750" height="1100"></iframe>
+
+
+	</div>
+	 <div data-role="footer" data-position="fixed" data-theme="f">
+	<h1>Alrights Reserved 2013</h1>
+</div>
+	
+</div>
+  <!-- local end -->
+	
+ <!--Streaming Page-->
+
+<div data-role="page" data-theme="c" id="streaming" class="content">
+ <div data-role="header" data-theme="f" div style="min-height: 50px;" align="center" data-position="fixed" data-position="fixed">
+ <h1><font size="8" face="Century Gothic">WOW SPACE</font></h1>
+
+</div>
+
+<div data-role="content" align="center" data-theme="e">
+
+
+<iframe src="http://www.pnoytv.com" width="750" height="1100"></iframe>
+
+	</div>
+	 <div data-role="footer" data-position="fixed" data-theme="f">
+	<h1>Alrights Reserved 2013</h1>
+</div>
+	
+</div>
+  <!-- streaming end -->
+
+
+
+
+
+
+
+ 
+  
+      <!--About-->
+<div data-role="page" data-theme="e" id="about">
+ <div data-role="header" data-theme="f" div style="min-height: 90px;" align="center" data-position="fixed">
+ <a href="#first" data-role="button" data-icon="arrow-l" data-iconpos="left" data-inline="true">Back</a>
+<h3 class="acad">ABOUT</h3>
+</div>
+  <div data-role="content" align="center">
+  
+  </br></br></br>
+  <div id="content"><img src="images/1.png" height="950" width="600"></div></br></br></br>
+     <font size="5" face="Century Gothic">WOW Space is an all-in-one mobile application that caters the needs of our modern day Heroes, the OFW(Overseas Filipino Workers). </font></center>
+	  </br></br></br></br>
+	  <div id="content" ><a href="#team" data-transition="flow"><img src="images/team.png" height="100" width="300"></a></div>
+	 <div data-role="footer" data-position="fixed" data-theme="f">
+	<h1>Alrights Reserved 2013</h1>
+</div>
+	
+</div>
+  
+  </div>
+  
+  
+  <div data-role="page" data-theme="f" id="team">
+ <div data-role="header" data-theme="f" div style="min-height: 90px;" align="center" data-position="fixed">
+ <a href="#main" data-role="button" data-icon="arrow-l" data-iconpos="left" data-inline="true">Back</a>
+<h3 class="acad">THE TEAM</h3>
+</div>
+  <div data-role="content" align="center">
+ 
+  <img src="images/ithree.png" height="1000" width="700">
+	  
+	 <div data-role="footer" data-position="fixed" data-theme="f">
+	<h1>Alrights Reserved 2013</h1>
+</div>
+	
+</div>
+  
+  </div>
+  <!--About end-->
+  
+  
+</body>
+</html>

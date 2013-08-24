@@ -1,0 +1,294 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>WOW HELP</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href='http://fonts.googleapis.com/css?family=Days+One' rel='stylesheet' type='text/css'>
+	<script src="js/jquery.min.js"></script>
+    <script src="js/responsiveslides.min.js"></script>
+    <script>
+    // You can also use "$(window).load(function() {"
+    $(function () {
+
+      // Slideshow 1
+      $("#slider1").responsiveSlides({
+        maxwidth: 1600,
+        speed: 600
+      });
+    });
+	
+  </script>
+  
+  	<script>
+		var db=openDatabase('donor3','1.0','testing database',2*1024*1024);
+function createDb(){
+db.transaction(function(tx){
+tx.executeSql('create table IF NOT EXISTS tblTesting2 (id, fldlname, fldfname, fldmail, fldpass)');
+console.log("magaling");
+});
+}
+
+function addData(){
+
+var txtid = document.getElementById('txtid').value;
+var txtlname = document.getElementById('txtlname').value;
+var txtfname = document.getElementById('txtfname').value;
+var txtemail = document.getElementById('txtemail').value;
+var txtpass = document.getElementById('txtpass').value;
+
+db.transaction(function(tx){
+tx.executeSql('insert into tblTesting2 values(?,?,?,?,?)', [txtid,txtlname,txtfname,txtemail,txtpass]);
+console.log("ikaw na");
+window.location = '#first'
+});
+}
+
+
+function displayData(){
+db.transaction(function(tx){
+tx.executeSql('select * from tblTesting',[], function (tx, result) {
+var len=result.rows.length, i;
+for (i = 0; i < len; i++) {
+var table=document.getElementById('mytable');
+var row=table.insertRow(0);
+var cell1=row.insertCell(0);
+var cell2=row.insertCell(1);
+var cell3=row.insertCell(2);
+var cell3=row.insertCell(3);
+cell1.innerHTML=(result.rows.item(i).fldlname);
+cell2.innerHTML=(result.rows.item(i).fldfname);
+cell3.innerHTML=(result.rows.item(i).fldemail);
+cell3.innerHTML=(result.rows.item(i).fldpass);
+console.log("LIST");
+}
+});
+});
+}
+
+</script>
+</head>
+<body onload="createDb()">
+<div class="hdr-bg">
+<div class="wrap"> 
+	<div class="header">
+		<div class="logo">
+				<a href="index.html"><img src="images/logo.png" alt=""  title="logo"/></a>
+		</div>
+		<div class="hdr-nav">
+			<ul class="menu">
+				<li><a href="index.html"><img src="images/home.png" alt=""/></a></li>
+				<li><a href="about.html">Login</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="service.html">Register</a>
+					<ul>
+						<li><a href="service.html" class="documents">as a donor</a></li>
+						<li><a href="service.html" class="messages">a OFW victim</a></li>
+				
+					</ul>
+				</li>
+				<li><a href="contact.html">Help</a></li>
+			</ul>
+		</div>
+		<div class="drp-dwn">
+	 	<select onchange="window.location=this.options[this.selectedIndex].value">
+			<option value="http://192.168.2.8/murali/fotograph/high/index.html">Home</option>
+			<option value="http://192.168.2.8/murali/fotograph/high/artists.html">Artists</option>
+			<option value="http://192.168.2.8/murali/fotograph/high/favourites.html">Favourites</option>
+			<option value="http://192.168.2.8/murali/fotograph/high/blog.html">Blog</option>
+			<option value="http://192.168.2.8/murali/fotograph/high/contact.html">Contact</option>
+		</select>
+	</div>
+	<div class="clear"></div>	
+	</div>
+<div class="clear"></div>
+</div>
+</div>
+
+<div class="clear"></div>
+	<div class="image-slider" align="center">
+				<!-- Slideshow 1 -->
+			    <ul class="rslides" id="slider1">
+			      <li><img src="images/2.jpg" alt=""></li>
+			      <li><img src="images/1.jpg" alt=""></li>
+			      <li><img src="images/3.jpg" alt=""></li>
+			    </ul>
+				 <!-- Slideshow 2 -->
+	</div>
+	
+	<div class="clear"></div>
+	<div class="cnt-btm">
+		<div class="cnt-hdr">
+			<h4>We need help</h4>
+		</div>
+
+		
+		
+		REGISTER AS DONOR
+
+
+<table>
+<tr>
+<td>PASSWORD ID</td>
+<td><input type="text" class="textbox" id="txtid"></td>
+</tr>
+
+<tr>
+<td>LAST NAME </td>
+<td><input type="text" id="txtlname" required></td>
+</tr>
+<tr>
+<td>FIRST NAME </td>
+<td><input type="text" id="txtfname" required></td>
+</tr>
+<tr>
+<td>EMAIL </td>
+<td><input type="text" id="txtemail" required></td>
+</tr>
+
+<tr>
+<td>PASSWORD </td>
+<td><input type="password" id="txtpass"></td>
+</tr>
+
+<tr>
+<td></td>
+<td><input type="button" onclick="addData()" value="REGISTER"> </td>
+</tr>
+</table>
+
+</div>
+	 
+
+    </div>
+		
+		
+		
+		
+		
+		
+		</div> 	
+		<div class="clear"></div>
+	</div>
+
+	
+<div class="cnt-bg">
+<div class="wrap"> 
+	<div class="main">
+		<div class="grids">
+		<div class="col span_1_of_4">
+			<div class="grid">
+				<img src="images/icon1.png" alt="" />
+				<h4>Register</h4>
+				<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames  .</p>
+				<div class="btn">
+					<a href="">More</a>
+				</div>
+			</div>
+		</div>
+		<div class="col span_1_of_4">
+			<div class="grid">
+				<img src="images/icon2.png" alt="" />
+				<h4>About</h4>
+				<p>There are many variations of passages of Lorem Ipsum available, but the majority .</p>
+				<div class="btn">
+					<a href="">More</a>
+				</div>
+			</div>
+		</div>
+		<div class="col span_1_of_4">
+			<div class="grid">
+				<img src="images/icon3.png" alt="" />
+				<h4>Donate</h4>
+				<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for .</p>
+				<div class="btn">
+					<a href="">More</a>
+				</div>
+			</div>
+		</div>
+		<div class="col span_1_of_4">
+			<div class="grid">
+				<img src="images/icon4.png" alt="" />
+				<h4>Updates</h4>
+				<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames .</p>
+				<div class="btn">
+					<a href="">More</a>
+				</div>
+			</div>
+			<div  class="clear"></div>
+		</div>
+
+	
+	<div class="content-bottom">
+		<h4>Latest Business Offers</h4>
+		<div class="content-bot-top">
+			<div class="col span_1_of_3">
+				<span class="link-1">01<a href="#"> March, 2013</a></span>
+				<h5>Nam ut lacus sed lacus.</h5>
+				<p>Sed lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim </p>
+				<div class="rd-more1">
+					<a href="#">Read More</a>
+				</div>
+			</div>
+			<div class="col span_1_of_3">
+				<span class="link-1">10<a href="#"> May, 2013</a></span>
+				<h5>soluta nobis eleifend</h5>
+				<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam  aliquam  erat volutpat. Ut wisi enim </p>
+				<div class="rd-more1">
+					<a href="#">Read More</a>
+				</div>
+			</div>
+			<div class="col span_1_of_3">
+				<span class="link-1">06<a href="#"> March, 2013</a></span>
+				<h5>Lorem nobis eleifend </h5>
+				<p>The standard chunk of the Lorem sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.dolore  </p>
+				<div class="rd-more1">
+					<a href="#">Read More</a>
+				</div>
+			</div>
+	 		<div class="clear"></div>
+		</div>
+	 </div>
+	</div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="footer-bg">
+<div class="wrap"> 
+<div class="f-main">
+	<div class="footer-grid">
+		<h4>BUSINESS WORLD!</h4>
+		<p>Lorem ipsum dolor sit amet, consect etur adipiscing elit. Vestibulum ut tortor urnati dunt dolor. Nunc vulputate ultrices con sect etur donec semper lacinia ultri dolore cie lorem ipsum commete.</p>
+		<form action="search.php"  class="nav-form">
+    	    <input type="text" name=""  value=" ">
+            <input type="submit" value="Submit" name="" />
+        </form>
+        <div class="clear"></div>
+	</div>
+<div class="f-icons">
+	<nav>
+	<ul>
+		<li><a href="#"><img src="images/fb.png" title="facebook" alt=""></a></li>
+		<li><a href="#"><img src="images/twitter.png" title="twitter" alt=""></a></li>
+		<li><a href="#"><img src="images/gplus.png" title="gplus" alt=""></a></li>
+		<li><a href="#"><img src="images/feed.png" title="feed	" alt=""></a></li>
+		<li><a href="#"><img src="images/plus.png" title="pinterest" alt=""></a></li>
+	</ul>
+	</nav>
+</div>
+<div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div class="ftr-bg">
+	<div class="wrap"> 
+		<div class="footer">
+			<p class="w3-link"><span>© All rights Reserved | Designed by iThree</span></p>
+		</div>
+	</div>
+</div>
+</body>
+</html>
